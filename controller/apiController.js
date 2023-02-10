@@ -160,10 +160,11 @@ module.exports = {
                 if (!bcrypt.compareSync(req.body.password, persona.password)){
                     res.json({msg: "el mail o la contraseña son incorrectas"})
                 }
-
+                console.log("SUCCES", persona._id)
                 const token = await generadorToken({id: persona._id})
                 res.json({msg: "persona logeada", token})
             } else {
+                console.log("DECLINED", error)
                 res.json(error)
             }
         } catch (error) {
